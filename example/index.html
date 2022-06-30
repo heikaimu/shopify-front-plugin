@@ -1,0 +1,704 @@
+<!--
+ * @Date: 2022-06-01 10:21:06
+ * @LastEditors: Yaowen Liu
+ * @LastEditTime: 2022-06-01 14:09:53
+ * @FilePath: /background-custom-project/example/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Black+Ops+One&family=Ceviche+One&family=Creepster&family=Lobster&family=MonteCarlo&family=Satisfy&family=Kaushan+Script&family=Dancing+Script&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdn.shopifycdn.net/s/files/1/0510/1423/8379/t/53/assets/theme.scss.css?v=7954619655120337871">
+  <link rel="stylesheet" href="../dist/style.css">
+  <script src="./vue.js"></script>
+  <script src="./jquery.js"></script>
+  <script src="../dist/background-puzzle.umd.js"></script>
+
+  <style>
+    .custom-open-button {
+      height: 40px;
+      background: linear-gradient(90deg, green, green);
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: .3s;
+      text-shadow: 1px 1px 5px #666666;
+      filter: grayscale(0);
+      margin-top: 10px;
+    }
+
+    .custom-open-button .text {
+      font-size: 16px;
+      color: #ffffff;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 0;
+      line-height: 1;
+      font-family: 'Antique Olive';
+    }
+
+    .custom-open-button.disabled {
+      filter: grayscale(1);
+    }
+
+    .custom-open-button.disabled .text {
+      display: none;
+    }
+
+    .custom-open-button.disabled .button__loading {
+      display: flex;
+    }
+
+    .button__loading {
+      height: 10px;
+      display: none;
+    }
+
+    .button__loading span {
+      display: block;
+      width: 10px;
+      height: 100%;
+      margin: 0 5px;
+      border-radius: 50%;
+      background: lightgreen;
+      animation: load 1.04s ease infinite;
+    }
+
+    @-webkit-keyframes load {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .button__loading span:nth-child(1) {
+      -webkit-animation-delay: 0.13s;
+    }
+
+    .button__loading span:nth-child(2) {
+      -webkit-animation-delay: 0.26s;
+    }
+
+    .button__loading span:nth-child(3) {
+      -webkit-animation-delay: 0.39s;
+    }
+
+    .button__loading span:nth-child(4) {
+      -webkit-animation-delay: 0.52s;
+    }
+
+    .button__loading span:nth-child(5) {
+      -webkit-animation-delay: 0.65s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="asyncStyle"></div>
+
+  <!-- 提交表单 -->
+  <div id="extendForm"></div>
+
+  <!-- 打开按钮 -->
+  <div id="customOpenButton" class="custom-open-button disabled">
+    <p class="text">CUSTOM NOW</p>
+    <div class="button__loading">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <script>
+
+    $('body').append('<div id="puzzleApp"></div>');
+
+    const app = Vue.createApp({
+
+      data() {
+        return {
+          config: {},
+          visible: false,
+          loaded: false
+        }
+      },
+
+      watch: {
+        visible(val) {
+          if (val) {
+            $("body").css('overflow', 'hidden');
+          } else {
+            $("body").css('overflow', 'auto');
+          }
+        }
+      },
+
+      async mounted() {
+        // 设置加载状态
+        this.setLoaded(false);
+        // 请求数据
+        this.config = await this.getConfig();
+        console.log(this.config)
+        // 设置加载状态
+        this.setLoaded(true);
+        // bindOpenButton
+        this.bindOpenButton();
+      },
+
+      methods: {
+
+        getConfig() {
+          return new Promise((resolve) => {
+            resolve({
+              background: [
+                {
+                  id: 'dwaddaw3232',
+                  name: 'ceshi',
+                  tag: 'ceshi',
+                  json: {
+                    "version": "2.7.0",
+                    "objects": [
+                      {
+                        "type": "rect",
+                        "version": "2.7.0",
+                        "originX": "left",
+                        "originY": "top",
+                        "left": 17,
+                        "top": 23.5,
+                        "width": 200,
+                        "height": 100,
+                        "fill": "red",
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "strokeLineCap": "butt",
+                        "strokeDashOffset": 0,
+                        "strokeLineJoin": "miter",
+                        "strokeMiterLimit": 4,
+                        "scaleX": 0.73,
+                        "scaleY": 1.34,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "shadow": null,
+                        "visible": true,
+                        "clipTo": null,
+                        "backgroundColor": "",
+                        "fillRule": "nonzero",
+                        "paintFirst": "fill",
+                        "globalCompositeOperation": "source-over",
+                        "transformMatrix": null,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "rx": 0,
+                        "ry": 0,
+                        "selectable": false
+                      },
+                      {
+                        "type": "rect",
+                        "version": "2.7.0",
+                        "originX": "left",
+                        "originY": "top",
+                        "left": 179,
+                        "top": 24,
+                        "width": 200,
+                        "height": 100,
+                        "fill": "red",
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "strokeLineCap": "butt",
+                        "strokeDashOffset": 0,
+                        "strokeLineJoin": "miter",
+                        "strokeMiterLimit": 4,
+                        "scaleX": 1.01,
+                        "scaleY": 1.34,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "shadow": null,
+                        "visible": true,
+                        "clipTo": null,
+                        "backgroundColor": "",
+                        "fillRule": "nonzero",
+                        "paintFirst": "fill",
+                        "globalCompositeOperation": "source-over",
+                        "transformMatrix": null,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "rx": 0,
+                        "ry": 0,
+                        "selectable": false
+                      },
+                      {
+                        "type": "rect",
+                        "version": "2.7.0",
+                        "originX": "left",
+                        "originY": "top",
+                        "left": 17,
+                        "top": 360.5,
+                        "width": 200,
+                        "height": 100,
+                        "fill": "red",
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "strokeLineCap": "butt",
+                        "strokeDashOffset": 0,
+                        "strokeLineJoin": "miter",
+                        "strokeMiterLimit": 4,
+                        "scaleX": 1.02,
+                        "scaleY": 1.33,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "shadow": null,
+                        "visible": true,
+                        "clipTo": null,
+                        "backgroundColor": "",
+                        "fillRule": "nonzero",
+                        "paintFirst": "fill",
+                        "globalCompositeOperation": "source-over",
+                        "transformMatrix": null,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "rx": 0,
+                        "ry": 0,
+                        "selectable": false
+                      },
+                      {
+                        "type": "rect",
+                        "version": "2.7.0",
+                        "originX": "left",
+                        "originY": "top",
+                        "left": 238.5,
+                        "top": 360.5,
+                        "width": 200,
+                        "height": 100,
+                        "fill": "red",
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "strokeLineCap": "butt",
+                        "strokeDashOffset": 0,
+                        "strokeLineJoin": "miter",
+                        "strokeMiterLimit": 4,
+                        "scaleX": 0.72,
+                        "scaleY": 1.33,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "shadow": null,
+                        "visible": true,
+                        "clipTo": null,
+                        "backgroundColor": "",
+                        "fillRule": "nonzero",
+                        "paintFirst": "fill",
+                        "globalCompositeOperation": "source-over",
+                        "transformMatrix": null,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "rx": 0,
+                        "ry": 0,
+                        "selectable": false
+                      },
+                      {
+                        "type": "text",
+                        "version": "2.7.0",
+                        "originX": "center",
+                        "originY": "top",
+                        "left": 200.81,
+                        "top": 328.05,
+                        "width": 148.39,
+                        "height": 33.9,
+                        "fill": "#000000",
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "strokeLineCap": "butt",
+                        "strokeDashOffset": 0,
+                        "strokeLineJoin": "miter",
+                        "strokeMiterLimit": 4,
+                        "scaleX": 1,
+                        "scaleY": 1,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "shadow": null,
+                        "visible": true,
+                        "clipTo": null,
+                        "backgroundColor": "",
+                        "fillRule": "nonzero",
+                        "paintFirst": "fill",
+                        "globalCompositeOperation": "source-over",
+                        "transformMatrix": null,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "text": "Hello World",
+                        "fontSize": 30,
+                        "fontWeight": "normal",
+                        "fontFamily": "Times New Roman",
+                        "fontStyle": "normal",
+                        "lineHeight": 1.16,
+                        "underline": false,
+                        "overline": false,
+                        "linethrough": false,
+                        "textAlign": "left",
+                        "textBackgroundColor": "",
+                        "charSpacing": 0,
+                        "selectable": false,
+                        "customType": "text",
+                        "customTL": "delete",
+                        "styles": {}
+                      }
+                    ],
+                    "backgroundImage": {
+                      "type": "image",
+                      "version": "2.7.0",
+                      "originX": "left",
+                      "originY": "top",
+                      "left": 0,
+                      "top": 0,
+                      "width": 618,
+                      "height": 800,
+                      "fill": "rgb(0,0,0)",
+                      "stroke": null,
+                      "strokeWidth": 0,
+                      "strokeDashArray": null,
+                      "strokeLineCap": "butt",
+                      "strokeDashOffset": 0,
+                      "strokeLineJoin": "miter",
+                      "strokeMiterLimit": 4,
+                      "scaleX": 0.65,
+                      "scaleY": 0.65,
+                      "angle": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "opacity": 1,
+                      "shadow": null,
+                      "visible": true,
+                      "clipTo": null,
+                      "backgroundColor": "",
+                      "fillRule": "nonzero",
+                      "paintFirst": "fill",
+                      "globalCompositeOperation": "source-over",
+                      "transformMatrix": null,
+                      "skewX": 0,
+                      "skewY": 0,
+                      "crossOrigin": "Anonymous",
+                      "cropX": 0,
+                      "cropY": 0,
+                      "selectable": true,
+                      "src": "https://sunzi7n.myuxc.com/sunzi/1594866172095.png",
+                      "filters": []
+                    }
+                  }
+                }
+              ],
+              increment: {
+                vip: {
+                  price: 20,
+                  text: 'The best choice to process orders with priority producing & shipping'
+                },
+                relatedProducts: [
+                  {
+                    title: 'Would You Like To Add A Same Design Doll Keychain?',
+                    price: 9.99,
+                    id: '39797718581419',
+                    hasText: false,
+                    url:
+                      'https://cdn.shopifycdn.net/s/files/1/0510/1423/8379/files/dollkeychain.png?v=1620469152'
+                  },
+                  // {
+                  //   title: 'Would You Like To Add A Same Design Doll Keychain?',
+                  //   price: 9.99,
+                  //   id: '39797718581419',
+                  //   hasText: false,
+                  //   url:
+                  //     'https://cdn.shopifycdn.net/s/files/1/0510/1423/8379/files/dollkeychain.png?v=1620469152'
+                  // }
+                ]
+              },
+            })
+          })
+        },
+
+        // 绑定点击事件
+        bindOpenButton() {
+          $("#customOpenButton").click(() => {
+            if (this.loaded) {
+              this.visible = true;
+              hideRewards();
+            }
+          })
+        },
+
+        // 设置加载完成
+        setLoaded(flag) {
+          this.loaded = flag;
+          this.disabledOpenButton(flag);
+        },
+
+        // 设置按钮可点击
+        disabledOpenButton(flag) {
+          if (flag) {
+            $("#customOpenButton").removeClass('disabled');
+          } else {
+            $("#customOpenButton").addClass('disabled');
+          }
+        },
+
+        // 处理定制信息
+        async handleCustomData() {
+          const data = {
+            "files": {
+              "Photo0": "https://face.globaladput.com/customerpics/202206/20220601_M_Photo0_4ucjh58zsem000.jpg",
+              "Photo2": "https://face.globaladput.com/customerpics/202206/20220601_M_Photo2_3chtms2d3wg000.jpg",
+              "Photo1": "https://face.globaladput.com/customerpics/202206/20220601_M_Photo1_gzltjv4mll400.jpg",
+              "Preview": "https://face.globaladput.com/customerpics/202206/20220601_M_Preview_3goghl6jde2000.jpg",
+              "Photo3": "https://face.globaladput.com/customerpics/202206/20220601_M_Photo3_4s73vf4wyuw000.jpg"
+            },
+            "increment": {
+              "productData": {
+                "config": [
+                  {
+                    "title": "Would You Like To Add A Same Design Doll Keychain?",
+                    "price": 9.99,
+                    "id": "39797718581419",
+                    "hasText": false,
+                    "url": "https://cdn.shopifycdn.net/s/files/1/0510/1423/8379/files/dollkeychain.png?v=1620469152"
+                  }
+                ],
+                "value": [
+                  "39797718581419"
+                ]
+              },
+              "vipData": {
+                "config": {
+                  "price": 20,
+                  "text": "The best choice to process orders with priority producing & shipping"
+                },
+                "value": true
+              }
+            },
+            "textData": {
+              "color": "#ffffff",
+              "fontFamily": "Ceviche One",
+              "text": "lyw"
+            }
+          }
+
+          const { backgroundData, files, increment, textData } = data;
+          this.setExtendForm(files, textData);
+
+          if (increment.productData.value.length > 0) {
+            const randomID = this.getRandomID();
+            for (const id of increment.productData.value) {
+              const product = increment.productData.config.find(item => item.id === id);
+              await this.addRelatedProduct(product, files, textData, randomID);
+            }
+          }
+
+          if (increment.vipData.value) {
+            await this.addVIP(increment.vipData.config.id);
+          }
+
+          this.setStatisticalForm({ background: backgroundData.name });
+
+          $('.product-form__cart-submit').trigger('click');
+        },
+
+        // 设置扩展表单属性
+        setExtendForm(files, textData) {
+          // 遍历所有图片
+          Object.keys(files).forEach(name => {
+            const value = files[name];
+            addExtendFormInput(name, value);
+          })
+
+          // 产品显示的预览图
+          addExtendFormInput('visibleKey', 'Preview');
+          addExtendFormInput('itemType', 'main');
+          if (textData) addExtendFormInput('_customText', JSON.stringify(textData));
+        },
+
+        // 设置统计表单
+        setStatisticalForm(options) {
+          const $url = $(`<input type="hidden" name="properties[_bodyTemplateOption]"></input>`);
+          const params = {
+            webSite: WEBSITE,
+            ...options
+          }
+          $url.val(JSON.stringify(params));
+          $('#extendForm').append($url);
+        },
+
+        // 添加vip
+        async addVIP(id) {
+          // 添加主商品字段
+          const randomID = this.getRandomID();
+          addExtendFormInput('_tempVip', randomID);
+          // 加入购物车
+          await this.addToCart({
+            id,
+            quantity: 1,
+            "properties[_tempVip]": randomID,
+            "properties[itemType]": "vip",
+            mask: 'body',
+            refresh: true,
+          })
+          return Promise.resolve();
+        },
+
+        // 添加附加商品
+        async addRelatedProduct(product, files, textData, randomID) {
+          const { id, url, hasText } = product;
+          // 添加主商品字段
+          addExtendFormInput('_related_product', randomID);
+
+          let params = {
+            id,
+            quantity: 1,
+            "properties[CustomCover]": url,
+            "properties[visibleKey]": "CustomCover",
+            "properties[_related_product]": randomID,
+            "properties[itemType]": "relatedProduct",
+            mask: 'body',
+            refresh: true,
+          }
+
+          if (textData && hasText) {
+            params["properties[_customText]"] = textData;
+          }
+
+          // 添加主商品的图片属性
+          for (let i in files) {
+            const value = files[i];
+            const name = i;
+            params[`properties[${name}]`] = value;
+          }
+
+          // 加入购物车
+          await this.addToCart(params);
+          return Promise.resolve();
+        },
+
+        // 加入购物车
+        addToCart(data) {
+          return new Promise((resolve, reject) => {
+            $.ajax({
+              type: "POST",
+              url: "/cart/add.js",
+              data,
+              async: false,
+              dataType: "json",
+              context: this,
+              success: res => {
+                resolve(res)
+              },
+              error: (request, status) => {
+                reject(request, status);
+              }
+            })
+          })
+        },
+
+        // 随机ID
+        getRandomID(length = 8) {
+          return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);
+        },
+
+      },
+
+      render() {
+        if (this.loaded && this.visible) {
+          return Vue.h(
+            BackgroundPuzzle,
+            {
+              config: this.config,
+              onClose: () => {
+                this.visible = false;
+              },
+              onComplete: (data) => {
+                this.handleCustomData(data);
+              }
+            }
+          )
+        }
+      }
+    })
+
+    // 获取当前TagID
+    function getTagID() {
+      var tags = "{{ product.tags | join:',' }}";
+
+      const reg = /mini-me-default-(\w+)/;
+      var optionResult = tags.match(reg);
+
+      if (optionResult) {
+        const res = optionResult[0].replace(reg, '$1');
+        if (isNaN(Number(res))) {
+          return res;
+        } else {
+          return Number(res) + ''
+        }
+      }
+
+      return '';
+    }
+
+    // 挂载到app上
+    app.mount('#puzzleApp');
+
+    // 添加商品的扩展字段
+    function addExtendFormInput(key, val) {
+      const $input = $(`<input type="hidden" name="properties[${key}]"></input>`);
+      $input.val(val);
+      $('#extendForm').append($input);
+    }
+
+    // 隐藏rewards
+    function hideRewards() {
+      new_element = document.createElement("style");
+      new_element.innerHTML = (`
+      .smile-improved-mobile-launcher {display:none}
+      #reamaze-widget {display:none}`
+      );
+      document.getElementById("asyncStyle").appendChild(new_element);
+    }
+
+    // 显示rewards
+    function showRewards() {
+      var f = document.getElementById("asyncStyle");
+      var childs = f.childNodes;
+      for (var i = 0; i < childs.length; i++) {
+        f.removeChild(childs[i]);
+      }
+    }
+  </script>
+</body>
+
+</html>

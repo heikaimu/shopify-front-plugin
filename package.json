@@ -1,0 +1,32 @@
+{
+  "name": "background-custom-project",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.5.0",
+    "axios": "^0.27.2",
+    "cropperjs": "^1.5.12",
+    "fabric": "2.7.0",
+    "fabric-customise-controls": "2.0.6-beta",
+    "fabric-renderer": "^0.0.6",
+    "vue": "^3.2.16",
+    "vue3-virtual-scroll": "^0.1.4"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.18.2",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.1.1",
+    "sass": "^1.52.1",
+    "vite": "^2.6.4",
+    "vite-plugin-eslint": "^1.6.1"
+  }
+}
