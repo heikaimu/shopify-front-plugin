@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-05-26 15:40:49
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-28 14:12:39
+ * @LastEditTime: 2022-06-30 17:21:51
  * @FilePath: /shopify-front-plugin/src/base/BaseContainer.vue
 -->
 <template>
@@ -40,7 +40,7 @@ defineProps({
   transform: translate3d(-50%, -50%, 0);
   width: 400px;
   height: 600px;
-  border-radius: $radius-lg;
+  border-radius: $radius-sm;
   overflow: hidden;
   background-color: #ffffff;
   display: flex;

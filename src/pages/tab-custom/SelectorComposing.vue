@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-06-28 14:58:17
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-30 15:57:47
+ * @LastEditTime: 2022-06-30 17:12:37
  * @FilePath: /shopify-front-plugin/src/pages/tab-custom/SelectorComposing.vue
 -->
 <template>
@@ -24,7 +24,8 @@ const props = defineProps({
     default: () => []
   },
   value: {
-    type: String
+    type: String,
+    default: ''
   }
 })
 

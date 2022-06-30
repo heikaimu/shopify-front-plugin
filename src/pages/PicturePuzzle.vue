@@ -1,12 +1,12 @@
 <!--
  * @Date: 2022-06-28 11:12:51
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-29 15:07:52
+ * @LastEditTime: 2022-06-30 17:13:00
  * @FilePath: /shopify-front-plugin/src/pages/PicturePuzzle.vue
 -->
 <template>
   <div class="picture-puzzle-container">
-    <TabCustom ref="tabCustom" :config="config" :options="options" @openCrop="handleOpenCrop" />
+    <TabCustom ref="tabCustom" :config="config" :options="options" @open-crop="handleOpenCrop" />
     <TabCrop v-if="cropVisible" :image-url="cropRawURL" :aspect-ratio="cropRatio" @back="handleCloseCrop" @confirm="handleConfirmCrop" />
     <TabUpload />
   </div>

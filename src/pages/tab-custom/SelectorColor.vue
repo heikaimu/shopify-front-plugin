@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-06-28 14:57:42
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-29 13:39:29
+ * @LastEditTime: 2022-06-30 17:12:33
  * @FilePath: /shopify-front-plugin/src/pages/tab-custom/SelectorColor.vue
 -->
 <template>
@@ -20,7 +20,8 @@ defineProps({
     default: () => []
   },
   value: {
-    type: String
+    type: String,
+    default: ''
   }
 })
 

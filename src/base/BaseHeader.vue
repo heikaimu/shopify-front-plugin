@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-05-26 15:58:56
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-28 10:47:24
+ * @LastEditTime: 2022-06-30 17:22:12
  * @FilePath: /shopify-front-plugin/src/base/BaseHeader.vue
 -->
 <template>
@@ -23,7 +23,8 @@ import BaseIcon from '../base/BaseIcon.vue'
 
 defineProps({
   title: {
-    type: String
+    type: String,
+    default: 'title'
   },
   icon: {
     type: String,
@@ -50,8 +51,7 @@ const emits = defineEmits({
   &__heading {
     @include pos-center;
     width: max-content;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
     margin-bottom: 0;
     color: rgba($color: $color-black, $alpha: .8);
   }

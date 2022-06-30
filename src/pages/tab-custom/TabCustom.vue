@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-06-28 11:15:58
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-30 16:25:10
+ * @LastEditTime: 2022-06-30 17:06:40
  * @FilePath: /shopify-front-plugin/src/pages/tab-custom/TabCustom.vue
 -->
 <template>
@@ -12,7 +12,7 @@
     <template #main>
       <DivBoard
         :background-style="backgroundStyle" :rects="rects" :rect-style="rectStyle" :texts="texts"
-        :text-style="textStyle" @changeFile="handleFileChange" @customText="handleCustomText" />
+        :text-style="textStyle" @change-file="handleFileChange" @custom-text="handleCustomText" />
     </template>
     <template #footer>
       <div class="custom-footer">

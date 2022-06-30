@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-06-28 14:14:41
  * @LastEditors: Yaowen Liu
- * @LastEditTime: 2022-06-28 14:29:22
+ * @LastEditTime: 2022-06-30 17:11:20
  * @FilePath: /shopify-front-plugin/src/pages/tab-custom/DivBoard.vue
 -->
 <template>
@@ -33,19 +33,24 @@ import BaseIcon from '../../base/BaseIcon.vue'
 
 defineProps({
   backgroundStyle: {
-    type: Object
+    type: Object,
+    default: () => {}
   },
   rects: {
-    type: Array
+    type: Array,
+    default: () => []
   },
   texts: {
-    type: Array
+    type: Array,
+    default: () => []
   },
   rectStyle: {
-    type: Function
+    type: Function,
+    default: function () {}
   },
   textStyle: {
-    type: Function
+    type: Function,
+    default: function () {}
   }
 })
 
