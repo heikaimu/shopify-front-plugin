@@ -77,7 +77,7 @@ const {
   backgroundStyle,
   rectStyle,
   textStyle,
-  toDataURL
+  toJson
 } = useRenderDiv(props.config, color, composingId)
 
 // 记录一个当前操作的图层
@@ -135,8 +135,8 @@ const handleCustomText = (item) => {
 
 // 渲染
 const handleConfirm = () => {
-  toDataURL().then(url => {
-    console.log(url)
+  toJson().then(json => {
+    emits('confirm', json)
   })
 }
 

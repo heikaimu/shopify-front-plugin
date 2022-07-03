@@ -115,6 +115,29 @@ export const useRenderDiv = (config, color, composingId) => {
     })
   }
 
+  const toJson = () => {
+    const { json, width, height } = curPos.value
+    const renderer = new Renderer('canvas', {
+      width,
+      height,
+      completeCustom: false
+    })
+
+    return new Promise((resolve) => {
+      renderer.loadFromJSON(json, undefined, () => {
+        // 由于无背景，所以需要手动添加一张
+        renderer.addBackground(bgURL.value).then(() => {
+          const json = renderer.toJSON()
+          resolve({
+            width,
+            height,
+            json
+          })
+        })
+      })
+    })
+  }
+
   return {
     loading,
     rects,
@@ -122,6 +145,7 @@ export const useRenderDiv = (config, color, composingId) => {
     backgroundStyle,
     rectStyle,
     textStyle,
-    toDataURL
+    toDataURL,
+    toJson
   }
 }

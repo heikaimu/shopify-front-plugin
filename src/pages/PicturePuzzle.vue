@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="picture-puzzle-container">
-    <TabCustom ref="tabCustom" :config="config" :options="options" @open-crop="handleOpenCrop" />
+    <TabCustom ref="tabCustom" :config="config" :options="options" @open-crop="handleOpenCrop" @confirm="handleConfirmCustom" />
     <TabCrop v-if="cropVisible" :image-url="cropRawURL" :aspect-ratio="cropRatio" @back="handleCloseCrop" @confirm="handleConfirmCrop" />
     <TabUpload />
   </div>
@@ -17,6 +17,7 @@ import { ref, onMounted } from 'vue'
 import TabCrop from './tab-crop/TabCrop.vue'
 import TabCustom from './tab-custom/TabCustom.vue'
 import TabUpload from './tab-upload/TabUpload.vue'
+import Renderer from 'fabric-renderer'
 
 defineProps({
   config: {
@@ -34,6 +35,19 @@ onMounted(() => {
 
 // 定制
 const tabCustom = ref(null)
+const handleConfirmCustom = (data) => {
+  const { width, height, json } = data
+  const renderer = new Renderer('canvas', {
+    width,
+    height,
+    completeCustom: false
+  })
+
+  renderer.loadFromJSON(json, undefined, () => {
+    const url = renderer.toDataURL()
+    console.log(url)
+  })
+}
 
 // 裁剪
 const cropVisible = ref(false)
